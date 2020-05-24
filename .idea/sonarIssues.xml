@@ -28,6 +28,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/lodz/uni/math/Game.fxml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/lodz/uni/math/GameController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/lodz/uni/math/Image.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/lodz/uni/math/LoginRegister.fxml">
           <value>
             <set />
@@ -39,6 +54,31 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/lodz/uni/math/Main.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/lodz/uni/math/MainMenu.fxml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/lodz/uni/math/MainMenuController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/lodz/uni/math/ToggleImage.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/lodz/uni/math/ToggleImages.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/lodz/uni/math/User.java">
           <value>
             <set />
           </value>
