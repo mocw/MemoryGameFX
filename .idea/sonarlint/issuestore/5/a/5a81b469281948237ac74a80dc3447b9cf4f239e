@@ -1,0 +1,18 @@
+
+V
+squid:S106^"9Replace this use of System.out or System.err by a logger.(ËÓ­°8ÅÁ¡Â¤.
+usquid:S3776$"RRefactor this method to reduce its Cognitive Complexity from 48 to the 15 allowed.(•‘İŸüÿÿÿÿ8ÔÉ“À¤.
+ksquid:UselessImportCheck";Remove this unused import 'javafx.scene.layout.Background'.(¤ä—ıÿÿÿÿ8´“¿¶¤.
+Fsquid:S1148N"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ÓŠ‘È¤.
+Fsquid:S1148G"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8³ÄßÂ¤.
+isquid:UselessImportCheck">Remove this unused import 'javafx.scene.control.ToggleButton'.(˜â™¥8³äî¶¤.
+Fsquid:S1148("#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ğÅ£¤.
+bsquid:UselessImportCheck"8Remove this unused import 'javafx.scene.control.Toggle'.(°¥³"8Œ¿ÙÂ¤.
+Usquid:S2589S"7Remove this expression which always evaluates to "true"(Á¢êø8ºƒßÂ¤.
+Rsquid:S14812"4Remove this unused "finalImageIndex" local variable.( ×­8¸—íÆ¤.
+nsquid:CommentedOutCodeLine`"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ8óåßÈ¤.
+fsquid:UselessImportCheck"6Remove this unused import 'java.util.logging.Handler'.(ƒœ®èûÿÿÿÿ8¢¸ªÁ¤.
+asquid:S18542"CRemove this useless assignment to local variable "finalImageIndex".( ×­8¸—íÆ¤.
+[
+squid:S106V"9Replace this use of System.out or System.err by a logger.(ÿŠñ°üÿÿÿÿ8“™…É¤.
+Ksquid:S16043"(Make this anonymous inner class a lambda(Õ‚”‚ùÿÿÿÿ8Ø×ºº¤.

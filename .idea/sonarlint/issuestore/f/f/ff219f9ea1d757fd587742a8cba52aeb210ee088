@@ -1,0 +1,7 @@
+
+V
+squid:S106O"9Replace this use of System.out or System.err by a logger.(ñæÄÀ8ÍßÇ“¤.
+Usquid:S1172L"2Remove this unused method parameter "actionEvent".(¾ÔÜ¢úÿÿÿÿ8ÍßÇ“¤.
+fsquid:UselessImportCheck";Remove this unused import 'javafx.scene.layout.AnchorPane'.(Ø µ8ÍßÇ“¤.
+Fsquid:S11480"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ÍßÇ“¤.
+Fsquid:S1148G"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ÍßÇ“¤.

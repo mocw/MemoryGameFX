@@ -1,9 +1,7 @@
 package lodz.uni.math;
 
 import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.Node;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.image.WritableImage;
+import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 
 import javax.imageio.ImageIO;
@@ -12,34 +10,25 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 
-public class ToggleImage extends ToggleButton {
+public class ToggleImage extends Button {
 
     private Image front;
     private boolean isClicked = false;
     private boolean isMatching = false;
+    private int posX;
+    private int posY;
+    private int index;
 
-    public ToggleImage(Image image) {
+    public ToggleImage(Image image,int x, int y) {
         super();
         this.front = image;
-    }
-
-    public ToggleImage(String s, Image image) {
-        super(s);
-        this.front = image;
-    }
-
-    public ToggleImage(String s, Node node, Image image) {
-        super(s, node);
-        this.front = image;
+        this.posX = x;
+        this.posY = y;
     }
 
     public void reverse() throws IOException  {
         if(isMatching) {
             return;
-        }
-        if(isClicked) {
-//            setBackground(back);
-            isClicked = false;
         } else {
             ByteArrayInputStream bis = new ByteArrayInputStream(this.front.getImage());
             BufferedImage bImage2 = ImageIO.read(bis);
@@ -53,5 +42,44 @@ public class ToggleImage extends ToggleButton {
         }
     }
 
+    public boolean isClicked() {
+        return isClicked;
+    }
 
+    public void setClicked(boolean click){
+        this.isClicked = click;
+    }
+
+    public Image getFront() {
+        return front;
+    }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public void setMatched(boolean matching) {
+        isMatching = matching;
+    }
+
+    public boolean isMatching() {
+        return isMatching;
+    }
+
+    public void turnBack(){
+        try {
+            BufferedImage bis = ImageIO.read(new File("./images/reverse.png"));
+            javafx.scene.image.Image image = SwingFXUtils.toFXImage(bis, null);
+            BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+            Background background = new Background(backgroundImage);
+
+            this.setBackground(background);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

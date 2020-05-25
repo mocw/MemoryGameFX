@@ -42,6 +42,8 @@ public class LoginRegisterController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             DbClass.connectDB();
+            tfLogin.setText("adam"); //dla szybszego logowania
+            tfPassword.setText("adam");
         } catch (SQLException e) {
             e.printStackTrace();
         }

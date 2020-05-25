@@ -1,0 +1,7 @@
+
+qsquid:MaximumInheritanceDepth"<This class has 8 parents which is greater than 5 authorized.(°½×ƒûÿÿÿÿ8¦å‡¡¤.
+[squid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ŸšÂÇ¤.
+bsquid:UselessImportCheck"8Remove this unused import 'javafx.scene.control.Toggle'.(°¥³"8ô™ŽÇ¤.
+9squid:S3626!"Remove this redundant jump.(ûÁÝ…8ù®Ðµ¤.
+Ysquid:UselessImportCheck".Remove this unused import 'javafx.scene.Node'.(ÑÖ¬ï8ìŠÈ¤.
+Gsquid:S1068")Remove this unused "index" private field.(ÕÖó8ç³ÂÇ¤.
