@@ -2,7 +2,13 @@ package lodz.uni.math;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Toggle;
 import javafx.scene.layout.GridPane;
@@ -17,6 +23,7 @@ import java.util.List;
 import java.util.logging.Handler;
 
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 
 public class GameController implements Initializable {
 
@@ -30,9 +37,17 @@ public class GameController implements Initializable {
     private ToggleImage secondSelectedImage = null;
     private int score = 0;
     private boolean pairNotFound = false;
+    private long startTime;
+    private long endTime;
+    private float time;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+        startGame();
+    }
+
+    private void startGame() {
+
         try {
             drawImages();
         } catch (IOException e) {
@@ -59,6 +74,7 @@ public class GameController implements Initializable {
                         }
 
                         if(pairNotFound){
+
                             selectedImage.turnBack();
                             secondSelectedImage.turnBack();
                             selectedImage = null;
@@ -87,13 +103,18 @@ public class GameController implements Initializable {
                             if(Arrays.equals(selectedImage.getFront().getImage(),secondSelectedImage.getFront().getImage())){
                                 System.out.println("Pair found!");
                                 if(shouldGameEnd()){
-                                    System.out.println("KONIEC GRY!");
+                                    try {
+                                        endGame(event);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                } else {
+                                    selectedImage.setMatched(true);
+                                    secondSelectedImage.setMatched(true);
+                                    selectedImage = null;
+                                    secondSelectedImage = null;
+                                    score++;
                                 }
-                                selectedImage.setMatched(true);
-                                secondSelectedImage.setMatched(true);
-                                selectedImage = null;
-                                secondSelectedImage = null;
-                                score++;
                             } else {
                                 pairNotFound = true;
                             }
@@ -104,7 +125,36 @@ public class GameController implements Initializable {
                 toggleImage.turnBack();
             }
         }
+        startTime = System.currentTimeMillis();
+    }
 
+    private void endGame(ActionEvent event) throws IOException {
+        endTime = System.currentTimeMillis();
+        time = (endTime - startTime)  / 1000F;
+
+        Alert alert =
+                new Alert(Alert.AlertType.NONE,
+                        "Twój czas: " + time + "s. Czy chcesz powtórzyć?",
+                        ButtonType.YES,
+                        ButtonType.NO);
+        alert.setTitle("Koniec gry");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.YES) {
+            Parent menu = FXMLLoader.load(getClass().getResource("Game.fxml"));
+            Scene menuScene = new Scene(menu);
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.setScene(menuScene);
+            window.show();
+        }
+
+        if( (result.get() == ButtonType.NO)){
+            Parent menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+            Scene menuScene = new Scene(menu);
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.setScene(menuScene);
+            window.show();
+        }
     }
 
     private boolean shouldGameEnd() {
