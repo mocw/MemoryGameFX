@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 25 Maj 2020, 12:14
+-- Czas generowania: 26 Maj 2020, 00:59
 -- Wersja serwera: 10.4.8-MariaDB
 -- Wersja PHP: 7.3.10
 
@@ -25,44 +25,52 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `users`
+-- Struktura tabeli dla tabeli `rank`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `rank` (
   `id` int(11) NOT NULL,
-  `nick` varchar(16) NOT NULL,
-  `password` longtext NOT NULL
+  `userID` int(11) NOT NULL,
+  `time` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Zrzut danych tabeli `users`
+-- Zrzut danych tabeli `rank`
 --
 
-INSERT INTO `users` (`id`, `nick`, `password`) VALUES
-(1, 'alan', '$2y$10$TpKwDxNeUfUyCtpnQBlx1uv9QxkyFfyUQHMyK9IJsCVXkOCfKw6cO'),
-(4, 'tomek', '$2y$10$clL4/tNLIHfCpt3eFeQYYOqjiyu9C/yx/HeHjGOTUirxgSsqPzh5i'),
-(5, 'agata', '$2y$10$QTfnfYwDbSJFyMPimHsF.eLDKbfkmB.EdkfDKhK.6gOSQvroRP8US'),
-(7, 'adam', '$2y$10$XAITHQd8/1xARO88PabIyOaY5iqk9SEYamegntfhdMoX18Si3AVey');
+INSERT INTO `rank` (`id`, `userID`, `time`) VALUES
+(5, 7, 4.724);
 
 --
 -- Indeksy dla zrzutów tabel
 --
 
 --
--- Indeksy dla tabeli `users`
+-- Indeksy dla tabeli `rank`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `rank`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userID` (`userID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT dla tabeli `users`
+-- AUTO_INCREMENT dla tabeli `rank`
 --
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `rank`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Ograniczenia dla zrzutów tabel
+--
+
+--
+-- Ograniczenia dla tabeli `rank`
+--
+ALTER TABLE `rank`
+  ADD CONSTRAINT `rank_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
