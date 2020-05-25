@@ -15,9 +15,7 @@ import java.util.ResourceBundle;
 public class MainMenuController implements Initializable {
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("MAIN MENU! Uzytkownik: " + User.getNickname());
-    }
+    public void initialize(URL url, ResourceBundle resourceBundle) { }
 
     public void logout(ActionEvent event) throws IOException {
         Parent menu = FXMLLoader.load(getClass().getResource("LoginRegister.fxml"));

@@ -18,12 +18,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.List;
 import java.util.logging.Handler;
 
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import lodz.uni.math.database.DbClass;
 
 public class GameController implements Initializable {
 
@@ -35,7 +38,7 @@ public class GameController implements Initializable {
     private Random random = new Random();
     private ToggleImage selectedImage = null;
     private ToggleImage secondSelectedImage = null;
-    private int score = 0;
+    private int score = 9;
     private boolean pairNotFound = false;
     private long startTime;
     private long endTime;
@@ -105,7 +108,7 @@ public class GameController implements Initializable {
                                 if(shouldGameEnd()){
                                     try {
                                         endGame(event);
-                                    } catch (IOException e) {
+                                    } catch (IOException | SQLException e) {
                                         e.printStackTrace();
                                     }
                                 } else {
@@ -128,9 +131,11 @@ public class GameController implements Initializable {
         startTime = System.currentTimeMillis();
     }
 
-    private void endGame(ActionEvent event) throws IOException {
+    private void endGame(ActionEvent event) throws IOException, SQLException {
         endTime = System.currentTimeMillis();
         time = (endTime - startTime)  / 1000F;
+
+        DbClass.updateResult(time);
 
         Alert alert =
                 new Alert(Alert.AlertType.NONE,

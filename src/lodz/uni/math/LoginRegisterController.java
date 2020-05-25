@@ -63,8 +63,6 @@ public class LoginRegisterController implements Initializable {
                 labelError.setText("Nieprawidłowe dane!");
                 return;
             }
-            User.getUser();
-            User.setNickname(tfLogin.getText());
             try {
                 switchToMainMenu(actionEvent);
             } catch (IOException e) {
