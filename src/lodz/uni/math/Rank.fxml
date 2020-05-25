@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="552.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lodz.uni.math.RankController">
+   <children>
+      <TableView layoutX="-2.0" layoutY="-1.0" prefHeight="552.0" prefWidth="612.0">
+         <columns>
+            <TableColumn fx:id="colID" prefWidth="72.0" />
+            <TableColumn fx:id="colNick" prefWidth="293.0" text="Nick" />
+            <TableColumn fx:id="colTime" prefWidth="245.0" text="Czas" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

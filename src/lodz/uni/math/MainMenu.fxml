@@ -20,7 +20,7 @@
             </rowConstraints>
             <children>
                 <Button fx:id="btnSartGame" mnemonicParsing="false" onAction="#startGame" prefHeight="58.0" prefWidth="135.0" text="Rozpocznij grę" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                <Button fx:id="btnRank" mnemonicParsing="false" prefHeight="70.0" prefWidth="132.0" text="Ranking" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                <Button fx:id="btnRank" mnemonicParsing="false" onAction="#rank" prefHeight="70.0" prefWidth="132.0" text="Ranking" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                 <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#logout" prefHeight="73.0" prefWidth="132.0" text="Wyloguj" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             </children>
         </GridPane>

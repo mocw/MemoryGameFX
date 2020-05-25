@@ -18,15 +18,19 @@ public class MainMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) { }
 
     public void logout(ActionEvent event) throws IOException {
-        Parent menu = FXMLLoader.load(getClass().getResource("LoginRegister.fxml"));
-        Scene menuScene = new Scene(menu);
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(menuScene);
-        window.show();
+        selectOption("LoginRegister.FXML", event);
     }
 
     public void startGame(ActionEvent event) throws IOException {
-        Parent menu = FXMLLoader.load(getClass().getResource("Game.fxml"));
+        selectOption("Game.FXML", event);
+    }
+
+    public void rank(ActionEvent actionEvent) throws IOException {
+        selectOption("Rank.FXML", actionEvent);
+    }
+
+    public void selectOption(String option, ActionEvent event) throws IOException{
+        Parent menu = FXMLLoader.load(getClass().getResource(option));
         Scene menuScene = new Scene(menu);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(menuScene);
