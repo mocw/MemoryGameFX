@@ -82,6 +82,7 @@ public class GameController implements Initializable {
 
                         if(selectedImage != null && secondSelectedImage != null){
                             if(Arrays.equals(selectedImage.getFront().getImage(),secondSelectedImage.getFront().getImage())){
+                                System.out.println("Pair found!");
                                 if(shouldGameEnd()){
                                     System.out.println("KONIEC GRY!");
                                 }
@@ -91,6 +92,7 @@ public class GameController implements Initializable {
                                 secondSelectedImage = null;
                                 scores++;
                             } else {
+                                System.out.println("Pair NOT found!");
                                 isBusy = true;
 //                                try {
 //                                    Thread.sleep(2000);
