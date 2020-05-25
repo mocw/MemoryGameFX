@@ -94,13 +94,13 @@ public class GameController implements Initializable {
                             } else {
                                 System.out.println("Pair NOT found!");
                                 isBusy = true;
-//                                try {
-//                                    Thread.sleep(2000);
-//                                } catch (InterruptedException e) {
-//                                    e.printStackTrace();
-//                                }
-//                                selectedImage.turnBack();
-//                                secondSelectedImage.turnBack();
+                                try {
+                                    Thread.sleep(500);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                selectedImage.turnBack();
+                                secondSelectedImage.turnBack();
                                 selectedImage = null;
                                 secondSelectedImage = null;
                                 isBusy = false;

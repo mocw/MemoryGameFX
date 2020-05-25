@@ -17,7 +17,6 @@ public class ToggleImage extends Button {
     private boolean isMatching = false;
     private int posX;
     private int posY;
-    private int index;
 
     public ToggleImage(Image image,int x, int y) {
         super();
