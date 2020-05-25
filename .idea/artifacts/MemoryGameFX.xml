@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="MemoryGameFX">
+    <output-path>$PROJECT_DIR$/out/artifacts/MemoryGameFX</output-path>
+    <root id="root">
+      <element id="archive" name="MemoryGameFX.jar">
+        <element id="module-output" name="MemoryGameFX" />
+      </element>
+    </root>
+  </artifact>
+</component>
