@@ -3,12 +3,9 @@ package lodz.uni.math;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.layout.Background;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -24,13 +21,15 @@ public class GameController implements Initializable {
 
     @FXML
     private GridPane gridPane;
+    @FXML
+    private Label labelTime;
     private boolean isBusy = false;
     private List<Integer> drawnNumbers = new ArrayList<>();
     private List<byte[]> byteImages = new ArrayList<>();
     private Random random = new Random();
     private ToggleImage selectedImage = null;
     private ToggleImage secondSelectedImage = null;
-    private int scores = 0;
+    private int score = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -47,7 +46,6 @@ public class GameController implements Initializable {
                 imageIndex++;
                 toggleImage.setMaxHeight(Double.MAX_VALUE);
                 toggleImage.setMaxWidth(Double.MAX_VALUE);
-                int finalImageIndex = imageIndex;
                 toggleImage.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -90,7 +88,7 @@ public class GameController implements Initializable {
                                 secondSelectedImage.setMatched(true);
                                 selectedImage = null;
                                 secondSelectedImage = null;
-                                scores++;
+                                score++;
                             } else {
                                 System.out.println("Pair NOT found!");
                                 isBusy = true;
@@ -112,10 +110,11 @@ public class GameController implements Initializable {
                 toggleImage.turnBack();
             }
         }
+
     }
 
     private boolean shouldGameEnd() {
-        return scores == 9;
+        return score == 9;
     }
 
     private void drawImages() throws IOException {
@@ -138,4 +137,5 @@ public class GameController implements Initializable {
         }
         Collections.shuffle(byteImages);
     }
+
 }
