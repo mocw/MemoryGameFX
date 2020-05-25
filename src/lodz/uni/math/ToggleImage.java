@@ -37,6 +37,7 @@ public class ToggleImage extends Button {
             Background background = new Background(backgroundImage);
 
             this.setBackground(background);
+            System.out.println("REVERSED");
             isClicked = true;
         }
     }

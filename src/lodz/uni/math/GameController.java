@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.Toggle;
 import javafx.scene.layout.GridPane;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -22,14 +23,13 @@ public class GameController implements Initializable {
     @FXML
     private GridPane gridPane;
     @FXML
-    private Label labelTime;
-    private boolean isBusy = false;
     private List<Integer> drawnNumbers = new ArrayList<>();
     private List<byte[]> byteImages = new ArrayList<>();
     private Random random = new Random();
     private ToggleImage selectedImage = null;
     private ToggleImage secondSelectedImage = null;
     private int score = 0;
+    private boolean pairNotFound = false;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -49,9 +49,6 @@ public class GameController implements Initializable {
                 toggleImage.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        if(isBusy){
-                            return;
-                        }
 
                         if(toggleImage.isMatching()){
                             return;
@@ -59,6 +56,14 @@ public class GameController implements Initializable {
 
                         if(selectedImage == toggleImage){
                             return;
+                        }
+
+                        if(pairNotFound){
+                            selectedImage.turnBack();
+                            secondSelectedImage.turnBack();
+                            selectedImage = null;
+                            secondSelectedImage = null;
+                            pairNotFound = false;
                         }
 
                         if(selectedImage == null){
@@ -90,18 +95,7 @@ public class GameController implements Initializable {
                                 secondSelectedImage = null;
                                 score++;
                             } else {
-                                System.out.println("Pair NOT found!");
-                                isBusy = true;
-                                try {
-                                    Thread.sleep(500);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                                selectedImage.turnBack();
-                                secondSelectedImage.turnBack();
-                                selectedImage = null;
-                                secondSelectedImage = null;
-                                isBusy = false;
+                                pairNotFound = true;
                             }
                         }
                     }
