@@ -41,7 +41,7 @@ public class GameController implements Initializable {
     private Random random = new Random();
     private ToggleImage selectedImage = null;
     private ToggleImage secondSelectedImage = null;
-    private int score = 9;
+    private int score = 0;
     private boolean pairNotFound = false;
     private long startTime;
     private long endTime;
