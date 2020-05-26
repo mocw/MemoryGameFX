@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 26 Maj 2020, 00:59
+-- Czas generowania: 26 Maj 2020, 03:14
 -- Wersja serwera: 10.4.8-MariaDB
 -- Wersja PHP: 7.3.10
 
@@ -39,7 +39,9 @@ CREATE TABLE `rank` (
 --
 
 INSERT INTO `rank` (`id`, `userID`, `time`) VALUES
-(5, 7, 4.724);
+(5, 7, 2.489),
+(6, 5, 57.478),
+(7, 4, 2.235);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -60,7 +62,7 @@ ALTER TABLE `rank`
 -- AUTO_INCREMENT dla tabeli `rank`
 --
 ALTER TABLE `rank`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Ograniczenia dla zrzutów tabel

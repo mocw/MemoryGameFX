@@ -1,5 +1,6 @@
 package lodz.uni.math;
 
+import com.sun.javafx.css.StyleCache;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Toggle;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -38,7 +41,7 @@ public class GameController implements Initializable {
     private Random random = new Random();
     private ToggleImage selectedImage = null;
     private ToggleImage secondSelectedImage = null;
-    private int score = 0;
+    private int score = 9;
     private boolean pairNotFound = false;
     private long startTime;
     private long endTime;
@@ -154,16 +157,20 @@ public class GameController implements Initializable {
         }
 
         if( (result.get() == ButtonType.NO)){
-            Parent menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-            Scene menuScene = new Scene(menu);
-            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            window.setScene(menuScene);
-            window.show();
+            returnToMenu(event);
         }
     }
 
     private boolean shouldGameEnd() {
         return score == 9;
+    }
+
+    public void returnToMenu(ActionEvent event) throws  IOException{
+        Parent menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        Scene menuScene = new Scene(menu);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(menuScene);
+        window.show();
     }
 
     private void drawImages() throws IOException {
@@ -187,4 +194,13 @@ public class GameController implements Initializable {
         Collections.shuffle(byteImages);
     }
 
+    public void leave(KeyEvent keyEvent) throws IOException{
+        if(keyEvent.getCode() == KeyCode.ESCAPE){
+            Parent menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+            Scene menuScene = new Scene(menu);
+            Stage window = (Stage) ((Node)keyEvent.getSource()).getScene().getWindow();
+            window.setScene(menuScene);
+            window.show();
+        }
+    }
 }

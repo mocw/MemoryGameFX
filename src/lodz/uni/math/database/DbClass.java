@@ -1,27 +1,21 @@
 package lodz.uni.math.database;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import java.sql.*;
-import java.util.Properties;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import lodz.uni.math.User;
-
-import javax.security.auth.login.FailedLoginException;
-import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class DbClass {
-    private static Connection conn = null;
+import lodz.uni.math.User;
 
+import javax.security.auth.login.FailedLoginException;
+
+public class DbClass {
+
+    private static Connection conn = null;
     public static Connection getConn() {
         return conn;
     }
+    private static List<RankItem> rankItemList;
 
     public static void connectDB() throws SQLException {
         String url = "jdbc:mysql://localhost/memorygame";
@@ -173,7 +167,39 @@ public class DbClass {
         }
     }
 
+    public static void getRank() throws SQLException{
+        Statement stat = null;
+        rankItemList = new ArrayList<>();
+        String sql = "Select nick, time\n" +
+                "from rank \n" +
+                "join users\n" +
+                "ON rank.userID=users.id\n" +
+                "ORDER BY time\n" +
+                "LIMIT 21";
+        try {
+            connectDB();
+            stat = conn.createStatement();
+            ResultSet rs = stat.executeQuery(sql);
+            int pos = 0;
+            while(rs.next()){
+                RankItem item = new RankItem(++pos, rs.getString("nick"), rs.getFloat("time"));
+                rankItemList.add(item);
+            }
+        } catch (SQLException e) {
+            System.out.println("Błąd z wykonaniem instruckji SQL typu DQL.");
+            throw e;
+        }
+        finally {
+            if (!stat.isClosed()) {
+                stat.close();
+            }
+            disconnectDB();
+        }
+    }
 
+    public static List<RankItem> getRankItemList() {
+        return rankItemList;
+    }
 }
 
 
