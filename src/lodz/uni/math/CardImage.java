@@ -10,7 +10,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 
-public class ToggleImage extends Button {
+public class CardImage extends Button {
 
     private Image front;
     private boolean isClicked = false;
@@ -18,7 +18,7 @@ public class ToggleImage extends Button {
     private int posX;
     private int posY;
 
-    public ToggleImage(Image image,int x, int y) {
+    public CardImage(Image image, int x, int y) {
         super();
         this.front = image;
         this.posX = x;
@@ -41,24 +41,8 @@ public class ToggleImage extends Button {
         }
     }
 
-    public boolean isClicked() {
-        return isClicked;
-    }
-
-    public void setClicked(boolean click){
-        this.isClicked = click;
-    }
-
     public Image getFront() {
         return front;
-    }
-
-    public int getPosX() {
-        return posX;
-    }
-
-    public int getPosY() {
-        return posY;
     }
 
     public void setMatched(boolean matching) {

@@ -1,6 +1,5 @@
 package lodz.uni.math;
 
-import com.sun.javafx.css.StyleCache;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.Toggle;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -21,11 +18,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.List;
-import java.util.logging.Handler;
 
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
@@ -39,8 +34,8 @@ public class GameController implements Initializable {
     private List<Integer> drawnNumbers = new ArrayList<>();
     private List<byte[]> byteImages = new ArrayList<>();
     private Random random = new Random();
-    private ToggleImage selectedImage = null;
-    private ToggleImage secondSelectedImage = null;
+    private CardImage selectedImage = null;
+    private CardImage secondSelectedImage = null;
     private int score = 0;
     private boolean pairNotFound = false;
     private long startTime;
@@ -63,19 +58,19 @@ public class GameController implements Initializable {
         int imageIndex = 0;
         for(int i=0; i<5; i++){
             for(int j=0; j<4; j++){
-                final ToggleImage toggleImage = new ToggleImage(new Image(byteImages.get(imageIndex)), i, j);
+                final CardImage cardImage = new CardImage(new Image(byteImages.get(imageIndex)), i, j);
                 imageIndex++;
-                toggleImage.setMaxHeight(Double.MAX_VALUE);
-                toggleImage.setMaxWidth(Double.MAX_VALUE);
-                toggleImage.setOnAction(new EventHandler<ActionEvent>() {
+                cardImage.setMaxHeight(Double.MAX_VALUE);
+                cardImage.setMaxWidth(Double.MAX_VALUE);
+                cardImage.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
 
-                        if(toggleImage.isMatching()){
+                        if(cardImage.isMatching()){
                             return;
                         }
 
-                        if(selectedImage == toggleImage){
+                        if(selectedImage == cardImage){
                             return;
                         }
 
@@ -89,14 +84,14 @@ public class GameController implements Initializable {
                         }
 
                         if(selectedImage == null){
-                            selectedImage = toggleImage;
+                            selectedImage = cardImage;
                             try {
                                 selectedImage.reverse();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                         } else {
-                            secondSelectedImage = toggleImage;
+                            secondSelectedImage = cardImage;
                             try {
                                 secondSelectedImage.reverse();
                             } catch (IOException e) {
@@ -108,18 +103,18 @@ public class GameController implements Initializable {
                         if(selectedImage != null && secondSelectedImage != null){
                             if(Arrays.equals(selectedImage.getFront().getImage(),secondSelectedImage.getFront().getImage())){
                                 System.out.println("Pair found!");
-                                if(shouldGameEnd()){
+                                    selectedImage.setMatched(true);
+                                    secondSelectedImage.setMatched(true);
+                                    selectedImage = null;
+                                    secondSelectedImage = null;
+                                    ++score;
+                                    System.out.println(score);
+                                   if(shouldGameEnd()){
                                     try {
                                         endGame(event);
                                     } catch (IOException | SQLException e) {
                                         e.printStackTrace();
                                     }
-                                } else {
-                                    selectedImage.setMatched(true);
-                                    secondSelectedImage.setMatched(true);
-                                    selectedImage = null;
-                                    secondSelectedImage = null;
-                                    score++;
                                 }
                             } else {
                                 pairNotFound = true;
@@ -127,8 +122,8 @@ public class GameController implements Initializable {
                         }
                     }
                 });
-                gridPane.add(toggleImage, i, j , 1, 1);
-                toggleImage.turnBack();
+                gridPane.add(cardImage, i, j , 1, 1);
+                cardImage.turnBack();
             }
         }
         startTime = System.currentTimeMillis();
@@ -162,7 +157,7 @@ public class GameController implements Initializable {
     }
 
     private boolean shouldGameEnd() {
-        return score == 9;
+        return score == 10;
     }
 
     public void returnToMenu(ActionEvent event) throws  IOException{
